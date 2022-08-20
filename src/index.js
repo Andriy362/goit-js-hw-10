@@ -49,6 +49,7 @@ function onFetchError(error) {
   Notiflix.Notify.failure('Oops, there is no country with that name');
   console.log(error);
 }
+
 function countryMarkup([
   {
     name: { official },
