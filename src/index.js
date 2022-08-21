@@ -14,10 +14,10 @@ const refs = {
 
 refs.searchBox.addEventListener(
   'input',
-  debounce(onCountrySearch, DEBOUNCE_DELAY)
+  debounce(CountrySearch, DEBOUNCE_DELAY)
 );
 
-function onCountrySearch(event) {
+function CountrySearch(event) {
   let searchQuery = event.target.value.trim();
 
   refs.countryList.innerHTML = '';
@@ -26,11 +26,11 @@ function onCountrySearch(event) {
   console.log(searchQuery);
 
   if (searchQuery !== '') {
-    fetchCountries(searchQuery).then(renderCountryCard).catch(onFetchError);
+    fetchCountries(searchQuery).then(CountryCard).catch(FetchError);
   }
 }
 
-function renderCountryCard(countries) {
+function CountryCard(countries) {
   if (countries.length > 10) {
     Notiflix.Notify.info(
       'Too many matches found. Please enter a more specific name.'
@@ -46,7 +46,7 @@ function renderCountryCard(countries) {
   refs.countryList.innerHTML = countriesMarkup(countries);
 }
 
-function onFetchError(error) {
+function FetchError(error) {
   Notiflix.Notify.failure('Oops, there is no country with that name');
   console.log(error);
 }
